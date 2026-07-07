@@ -1,0 +1,34 @@
+services:
+  simudyne-duck-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SIMUDYNE_SDK_REF: ${SIMUDYNE_SDK_REF:-85867ce3a10540b8d03c39dcded298f07b2da190}
+    container_name: simudyne-duck-api
+    ports:
+      - "6770:6770"
+    environment:
+      PYTHONPATH: /app
+      SIMUDYNE_API_KEY: ${SIMUDYNE_API_KEY:?Set SIMUDYNE_API_KEY in .env or shell environment}
+      SIMUDYNE_DATA_DIR: /app/.simudyne_data
+      SIMUDYNE_SYMBOL: ${SIMUDYNE_SYMBOL:-}
+      SIMUDYNE_DATE: ${SIMUDYNE_DATE:-}
+      SIMUDYNE_ALLOWED_DATES: ${SIMUDYNE_ALLOWED_DATES:-}
+      SIMUDYNE_ALLOWED_SYMBOLS: ${SIMUDYNE_ALLOWED_SYMBOLS:-}
+      SIMUDYNE_ALLOWED_SCENARIOS: ${SIMUDYNE_ALLOWED_SCENARIOS:-}
+      SIMUDYNE_STARTUP_FORCE_REFRESH: ${SIMUDYNE_STARTUP_FORCE_REFRESH:-1}
+      SIMUDYNE_STARTUP_BLOCKING_WARMUP: ${SIMUDYNE_STARTUP_BLOCKING_WARMUP:-1}
+      SIMUDYNE_KEEP_RAW_PARQUET: ${SIMUDYNE_KEEP_RAW_PARQUET:-1}
+      SIMUDYNE_WARMUP_WORKERS: ${SIMUDYNE_WARMUP_WORKERS:-8}
+      SIMUDYNE_DUCKDB_THREADS: ${SIMUDYNE_DUCKDB_THREADS:-4}
+      SIMUDYNE_API_TIMEOUT_SEC: ${SIMUDYNE_API_TIMEOUT_SEC:-120}
+      SIMUDYNE_API_RETRIES: ${SIMUDYNE_API_RETRIES:-2}
+      SIMUDYNE_API_RETRY_BACKOFF_SEC: ${SIMUDYNE_API_RETRY_BACKOFF_SEC:-2.0}
+    volumes:
+      - simudyne-duck-data:/app/.simudyne_data
+    restart: unless-stopped
+
+volumes:
+  simudyne-duck-data:
+    name: simudyne-duck-data

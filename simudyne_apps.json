@@ -1,0 +1,104 @@
+[
+  {
+    "name": "Simudyne",
+    "img": "https://media.licdn.com/dms/image/v2/C4E1BAQHDyBIvPOEUqQ/company-background_10000/company-background_10000/0/1585211811944/simudyne_cover?e=2147483647&v=beta&t=4Yl9Tryew_oKNLS1jM2Y0PD9dLf9UQhLatGGB59BK3g",
+    "img_dark": "https://media.licdn.com/dms/image/v2/C4E1BAQHDyBIvPOEUqQ/company-background_10000/company-background_10000/0/1585211811944/simudyne_cover?e=2147483647&v=beta&t=4Yl9Tryew_oKNLS1jM2Y0PD9dLf9UQhLatGGB59BK3g",
+    "img_light": "https://media.licdn.com/dms/image/v2/C4E1BAQHDyBIvPOEUqQ/company-background_10000/company-background_10000/0/1585211811944/simudyne_cover?e=2147483647&v=beta&t=4Yl9Tryew_oKNLS1jM2Y0PD9dLf9UQhLatGGB59BK3g",
+    "description": "Demonstration of Simudyne's synthetic market simulator. The application streams order book flow, executed trades, and aggregated prices over a full market session with multiple runs and scenarios per-ticker.",
+    "allowCustomization": true,
+    "tabs": {
+      "market-stream": {
+        "id": "market-stream",
+        "name": "Market Stream",
+        "layout": [
+          {
+            "i": "simudyne_stats_markdown",
+            "x": 0,
+            "y": 2,
+            "w": 40,
+            "h": 12,
+            "state": {
+              "params": {
+                "symbol": "1024.HK",
+                "date": "2025-09-02",
+                "scenario": "flash_crash",
+                "run": "0"
+              },
+              "chartView": {
+                "enabled": false,
+                "chartType": "line"
+              }
+            },
+            "groups": [
+              "symbol",
+              "date",
+              "scenario",
+              "run"
+            ]
+          },
+          {
+            "i": "simudyne_market_stream_iframe",
+            "x": 0,
+            "y": 14,
+            "w": 40,
+            "h": 22,
+            "state": {
+              "params": {
+                "symbol": "1024.HK",
+                "date": "2025-09-02",
+                "scenario": "flash_crash",
+                "run": "0"
+              }
+            },
+            "groups": [
+              "symbol",
+              "date",
+              "scenario",
+              "run"
+            ]
+          }
+        ]
+      },
+      "about": {
+        "id": "about",
+        "name": "About",
+        "layout": [
+          {
+            "i": "simudyne_about_markdown",
+            "x": 0,
+            "y": 2,
+            "w": 40,
+            "h": 20,
+            "groups": []
+          }
+        ]
+      }
+    },
+    "groups": [
+      {
+        "name": "symbol",
+        "type": "param",
+        "paramName": "symbol",
+        "defaultValue": "1024.HK"
+      },
+      {
+        "name": "date",
+        "type": "param",
+        "paramName": "date",
+        "defaultValue": "2025-09-02"
+      },
+      {
+        "name": "scenario",
+        "type": "param",
+        "paramName": "scenario",
+        "defaultValue": "flash_crash"
+      },
+      {
+        "name": "run",
+        "type": "param",
+        "paramName": "run",
+        "defaultValue": "0"
+      }
+    ]
+  }
+]

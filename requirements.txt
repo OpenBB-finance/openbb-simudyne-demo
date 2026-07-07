@@ -1,0 +1,5 @@
+uvicorn[standard]
+pydantic
+fastapi
+httpx
+duckdb>=1.1

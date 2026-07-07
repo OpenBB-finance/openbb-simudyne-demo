@@ -1,0 +1,150 @@
+{
+  "simudyne_stats_markdown": {
+    "name": "Simudyne Scenario vs Run Stats",
+    "description": "Average KPIs across all runs for a scenario alongside KPIs for the loaded run.",
+    "category": "Simudyne",
+    "type": "table",
+    "widgetId": "simudyne_stats_markdown",
+    "endpoint": "/simudyne_stats",
+    "runButton": false,
+    "params": [
+      {
+        "paramName": "symbol",
+        "label": "Symbol",
+        "description": "Ticker symbol.",
+        "type": "endpoint",
+        "optionsEndpoint": "/simudyne_param_options",
+        "show": true
+      },
+      {
+        "paramName": "date",
+        "label": "Date",
+        "description": "Trading date available for the selected symbol.",
+        "type": "endpoint",
+        "optionsEndpoint": "/simudyne_param_options",
+        "optionsParams": {
+          "symbol": "$symbol"
+        },
+        "show": true
+      },
+      {
+        "paramName": "scenario",
+        "label": "Scenario",
+        "description": "Cached scenario available for the selected symbol and date.",
+        "type": "endpoint",
+        "optionsEndpoint": "/simudyne_param_options",
+        "optionsParams": {
+          "symbol": "$symbol",
+          "date": "$date"
+        },
+        "show": true
+      },
+      {
+        "paramName": "run",
+        "label": "Run",
+        "description": "Run index (or 'all') available for the selection.",
+        "type": "endpoint",
+        "optionsEndpoint": "/simudyne_param_options",
+        "optionsParams": {
+          "symbol": "$symbol",
+          "date": "$date",
+          "scenario": "$scenario"
+        },
+        "show": true
+      }
+    ],
+    "gridData": {
+      "w": 40,
+      "h": 7
+    },
+    "source": [
+      "Simudyne"
+    ]
+  },
+  "simudyne_market_stream_iframe": {
+    "name": "Simudyne Market Stream",
+    "description": "Streaming replay of top of book, trades, NBBO, and market price for cached Simudyne scenarios.",
+    "category": "Simudyne",
+    "type": "iframe",
+    "widgetId": "simudyne_market_stream_iframe",
+    "endpoint": "simudyne_stream",
+    "params": [
+      {
+        "paramName": "symbol",
+        "label": "Symbol",
+        "description": "Ticker symbol.",
+        "type": "endpoint",
+        "optionsEndpoint": "/simudyne_param_options",
+        "show": true
+      },
+      {
+        "paramName": "date",
+        "label": "Date",
+        "description": "Trading date available for the selected symbol.",
+        "type": "endpoint",
+        "optionsEndpoint": "/simudyne_param_options",
+        "optionsParams": {
+          "symbol": "$symbol"
+        },
+        "show": true
+      },
+      {
+        "paramName": "scenario",
+        "label": "Scenario",
+        "description": "Cached scenario available for the selected symbol and date.",
+        "type": "endpoint",
+        "optionsEndpoint": "/simudyne_param_options",
+        "optionsParams": {
+          "symbol": "$symbol",
+          "date": "$date"
+        },
+        "show": true
+      },
+      {
+        "paramName": "run",
+        "label": "Run",
+        "description": "Run index (or 'all') available for the selection.",
+        "type": "endpoint",
+        "optionsEndpoint": "/simudyne_param_options",
+        "optionsParams": {
+          "symbol": "$symbol",
+          "date": "$date",
+          "scenario": "$scenario"
+        },
+        "show": true
+      },
+      {
+        "paramName": "playback_ms",
+        "label": "Playback ms",
+        "description": "Playback cadence in milliseconds.",
+        "type": "number",
+        "value": 120,
+        "show": true
+      }
+    ],
+    "gridData": {
+      "w": 40,
+      "h": 22
+    },
+    "source": [
+      "Simudyne"
+    ]
+  },
+  "simudyne_about_markdown": {
+    "name": "About Simudyne Pulse",
+    "description": "Overview of Simudyne Pulse synthetic market data, scenarios, and validation.",
+    "category": "Simudyne",
+    "type": "markdown",
+    "widgetId": "simudyne_about_markdown",
+    "endpoint": "/simudyne_about",
+    "runButton": false,
+    "params": [],
+    "gridData": {
+      "w": 40,
+      "h": 20
+    },
+    "source": [
+      "Simudyne"
+    ]
+  }
+}

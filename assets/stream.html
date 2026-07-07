@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Simudyne Market Stream</title>
+  <link rel="stylesheet" href="/simudyne_assets/stream.css">
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script src="/simudyne_assets/stream.js" defer></script>
+</head>
+<body>
+<div class="shell">
+
+  <div class="hdr">
+    <div>
+      <h1>Simudyne Market Stream</h1>
+      <div class="hdr-sub" id="hdr-meta">Connecting&hellip;</div>
+    </div>
+    <div class="ctrls">
+      <span id="prog"></span>
+      <button class="btn btn-p" id="btn-pause">Pause</button>
+      <button class="btn btn-ff" id="btn-ff">FF 1x</button>
+      <button class="btn btn-s" id="btn-rst">Restart</button>
+      <span id="clock">&mdash;</span>
+    </div>
+  </div>
+
+  <div class="transport">
+    <span class="time" id="timeline-now">00:00</span>
+    <input id="timeline" type="range" min="0" max="1" step="1" value="0" />
+    <span class="time" id="timeline-total">00:00</span>
+  </div>
+
+  <div class="kpi-bar">
+    <div class="kpi"><div class="kl">NBBO Bid</div><div class="kv bid" id="v-bid">&mdash;</div><div class="ks" id="s-bid">&mdash;</div></div>
+    <div class="kpi"><div class="kl">NBBO Ask</div><div class="kv ask" id="v-ask">&mdash;</div><div class="ks" id="s-ask">&mdash;</div></div>
+    <div class="kpi"><div class="kl">Spread</div><div class="kv" id="v-spread">&mdash;</div><div class="ks">ask &minus; bid</div></div>
+    <div class="kpi"><div class="kl">Market Price</div><div class="kv" id="v-market">&mdash;</div><div class="ks" id="s-market">last actual trade</div></div>
+    <div class="kpi"><div class="kl">Trades / sec</div><div class="kv" id="v-tps">&mdash;</div><div class="ks" id="s-tps">&mdash;</div></div>
+    <div class="kpi"><div class="kl">Open</div><div class="kv" id="v-open">&mdash;</div><div class="ks">bar open</div></div>
+    <div class="kpi"><div class="kl">High</div><div class="kv" id="v-high">&mdash;</div><div class="ks">bar high</div></div>
+    <div class="kpi"><div class="kl">Low</div><div class="kv" id="v-low">&mdash;</div><div class="ks">bar low</div></div>
+    <div class="kpi"><div class="kl">Close</div><div class="kv" id="v-close">&mdash;</div><div class="ks">bar close</div></div>
+    <div class="kpi"><div class="kl">Volume</div><div class="kv" id="v-volume">&mdash;</div><div class="ks">day cumulative volume</div></div>
+  </div>
+
+  <div class="mid-row">
+    <div class="panel">
+      <div class="ph"><span class="pt">Top of Book</span><span class="pm" id="book-mode">&mdash;</span></div>
+      <table class="book-tbl">
+        <thead><tr><th class="r">SIZE</th><th class="r">BID</th><th class="sep"></th><th class="l">ASK</th><th class="l">SIZE</th></tr></thead>
+        <tbody id="book-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="panel" style="overflow:hidden">
+      <div class="ph">
+        <span class="pt">Tick Chart</span>
+      </div>
+      <div id="chart-wrap"></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="ph"><span class="pt">Trade Tape</span><span class="pm" id="tape-mode">&mdash;</span></div>
+    <div class="tape-wrap">
+      <table class="tape-tbl">
+        <thead><tr><th>Time</th><th>Side</th><th>Price</th><th>Size</th><th>Order ID</th></tr></thead>
+        <tbody id="tape-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
