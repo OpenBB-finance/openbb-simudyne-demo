@@ -1,13 +1,19 @@
-:root{--bg:#f4efe6;--panel:rgba(255,255,255,0.84);--ink:#17212b;--muted:#5c6773;--line:rgba(23,33,43,.10);--bid:#0f766e;--ask:#b91c1c;--mid:#1d4ed8;}
+@font-face{font-family:"PxGrotesk";src:url("/simudyne_assets/PxGrotesk-Regular.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"PxGrotesk";src:url("/simudyne_assets/PxGrotesk-Bold.otf") format("opentype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"PxGrotesk";src:url("/simudyne_assets/PxGrotesk-Light.otf") format("opentype");font-weight:300;font-style:normal;font-display:swap}
+
+:root{--bg:#f4efe6;--panel:rgba(255,255,255,0.84);--ink:#17212b;--muted:#5c6773;--line:rgba(23,33,43,.10);--bid:#0f766e;--ask:#b91c1c;--mid:#002DFF;
+  --brand-blue:#002DFF;--brand-deep-blue:#09148A;--brand-purple:#3D0098;--brand-sky:#00B5FF;--brand-pink:#E61B72;}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);
+body{font-family:"PxGrotesk",ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);
   background:radial-gradient(circle at top left,rgba(15,118,110,.14),transparent 30%),
     radial-gradient(circle at top right,rgba(180,83,9,.10),transparent 30%),
     linear-gradient(180deg,#faf7f2,var(--bg));min-height:100vh;}
 
 /* Dark theme — applied by stream.js when Workspace passes ?theme=dark */
 html[data-theme="dark"]{--bg:#151518;--panel:rgba(255,255,255,0.05);--ink:#e6e9ec;--muted:#9aa4af;
-  --line:rgba(255,255,255,0.10);--bid:#2dd4bf;--ask:#f87171;--mid:#60a5fa;}
+  --line:rgba(255,255,255,0.10);--bid:#2dd4bf;--ask:#f87171;--mid:#00B5FF;}
+html[data-theme="dark"] .brand-logo{content:url("/simudyne_assets/simudyne-symbol-white.png")}
 html[data-theme="dark"] body{background:radial-gradient(circle at top left,rgba(45,212,191,.12),transparent 30%),
   radial-gradient(circle at top right,rgba(96,165,250,.10),transparent 30%),linear-gradient(180deg,#1b1b20,var(--bg));}
 html[data-theme="dark"] .book-tbl td,html[data-theme="dark"] .tape-tbl td{border-bottom-color:rgba(255,255,255,.05)}
@@ -16,21 +22,24 @@ html[data-theme="dark"] .dim{color:rgba(255,255,255,.32)}
 html[data-theme="dark"] .btn-p{background:#e6e9ec;color:#151518}
 html[data-theme="dark"] .btn-s{background:rgba(255,255,255,.10);color:var(--ink)}
 
-.shell{padding:14px;display:grid;gap:10px}
+.shell{padding:14px;display:grid;gap:10px;background-image:linear-gradient(90deg,var(--brand-blue),var(--brand-sky),var(--brand-purple));background-repeat:no-repeat;background-size:100% 3px;background-position:top}
 .hdr{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-logo{height:26px;width:auto;flex-shrink:0;display:block;transition:opacity .15s}
+.brand a:hover .brand-logo{opacity:.75}
 .hdr h1{font-size:18px;font-weight:700;margin-bottom:2px}
 .hdr-sub{font-size:12px;color:var(--muted)}
 .ctrls{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .btn{border:none;border-radius:999px;padding:6px 13px;font-size:12px;font-weight:600;cursor:pointer}
 .btn-p{background:var(--ink);color:#fff}.btn-s{background:rgba(23,33,43,.09);color:var(--ink)}
-.btn-ff{background:#0f766e;color:#fff}
+.btn-ff{background:var(--brand-blue);color:#fff}
 #prog{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
 #clock{font-size:12px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
 .transport{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;
   background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 12px;
   backdrop-filter:blur(8px);box-shadow:0 3px 10px rgba(23,33,43,.06)}
 .transport .time{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
-.transport input[type="range"]{width:100%;accent-color:#0f766e;cursor:pointer}
+.transport input[type="range"]{width:100%;accent-color:var(--brand-blue);cursor:pointer}
 .kpi-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
 .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;
   backdrop-filter:blur(8px);box-shadow:0 3px 10px rgba(23,33,43,.06)}

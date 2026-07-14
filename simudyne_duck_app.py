@@ -55,6 +55,9 @@ async def widgets_json():
 
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon():
+    icon = cfg.ASSETS_DIR / "simudyne-symbol-blue.png"
+    if icon.exists():
+        return FileResponse(icon, media_type="image/png")
     return Response(status_code=204)
 
 

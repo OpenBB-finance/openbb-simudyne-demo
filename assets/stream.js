@@ -93,8 +93,8 @@ function currentTheme() {
 }
 function chartColors(theme) {
   return theme === 'dark'
-    ? { text: '#9aa4af', grid: 'rgba(255,255,255,.07)', border: 'rgba(255,255,255,.14)', line: '#60a5fa' }
-    : { text: '#5c6773', grid: 'rgba(23,33,43,.06)', border: 'rgba(23,33,43,.12)', line: '#1d4ed8' };
+    ? { text: '#9aa4af', grid: 'rgba(255,255,255,.07)', border: 'rgba(255,255,255,.14)', line: '#00B5FF' }
+    : { text: '#5c6773', grid: 'rgba(23,33,43,.06)', border: 'rgba(23,33,43,.12)', line: '#002DFF' };
 }
 function applyTheme(theme) {
   var t = theme === 'dark' ? 'dark' : 'light';
