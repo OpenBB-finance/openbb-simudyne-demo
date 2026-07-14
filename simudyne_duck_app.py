@@ -315,7 +315,14 @@ async def ws_simudyne_stream(
                 )
                 dirty = False
                 if not paused:
-                    frame_index = (frame_index + frame_step) % nframes
+                    # Reset cleanly on overflow rather than wrapping with modulo: repeatedly
+                    # adding frame_step mod nframes only ever visits the residue class of
+                    # gcd(frame_step, nframes), so playback could get stuck looping through a
+                    # fixed subset of frames forever, with a loop period independent of the
+                    # selected speed for any two frame_steps sharing the same gcd.
+                    frame_index += frame_step
+                    if frame_index >= nframes:
+                        frame_index = 0
 
             await asyncio.sleep(0.05 if paused else delay)
     except WebSocketDisconnect:
