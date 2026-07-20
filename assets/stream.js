@@ -93,8 +93,8 @@ function currentTheme() {
 }
 function chartColors(theme) {
   return theme === 'dark'
-    ? { text: '#9aa4af', grid: 'rgba(255,255,255,.07)', border: 'rgba(255,255,255,.14)', line: '#60a5fa' }
-    : { text: '#5c6773', grid: 'rgba(23,33,43,.06)', border: 'rgba(23,33,43,.12)', line: '#1d4ed8' };
+    ? { text: '#9aa4af', grid: 'rgba(255,255,255,.07)', border: 'rgba(255,255,255,.14)', line: '#00B5FF' }
+    : { text: '#5c6773', grid: 'rgba(23,33,43,.06)', border: 'rgba(23,33,43,.12)', line: '#002DFF' };
 }
 function applyTheme(theme) {
   var t = theme === 'dark' ? 'dark' : 'light';
@@ -504,13 +504,21 @@ window.addEventListener('message', function(ev) {
   if (d.type === 'openbb-request') { sendWidgetData(d.widgetId != null ? d.widgetId : null); return; }
   if (d.type !== 'openbb-params-update') return;
   var p = d.params || {}, cur = readParams();
-  connect({
+  var next = {
     symbol:      p.symbol      || cur.symbol,
     date:        p.date        || cur.date,
     scenario:    p.scenario    || cur.scenario,
     run:         String(p.run  != null ? p.run : cur.run),
     playback_ms: Number(p.playback_ms != null ? p.playback_ms : cur.playback_ms)
-  });
+  };
+  // Workspace can rebroadcast params-update with unchanged values (e.g. on
+  // unrelated dashboard activity); only reconnect — which resets playback
+  // speed and pause state — when the selection actually changed.
+  var changed = next.symbol !== cur.symbol || next.date !== cur.date ||
+    next.scenario !== cur.scenario || next.run !== cur.run ||
+    next.playback_ms !== cur.playback_ms;
+  if (!changed) return;
+  connect(next);
 });
 
 // ── Boot ────────────────────────────────────────
